@@ -1,0 +1,27 @@
+--Create a boutique database
+
+Create table boutique (id integer,item text,price integer,aisle integer,inventory integer,color text);
+
+Insert into boutique values(1,"dress",28,3,15,"black");
+Insert into boutique values(2,"skirts",25,2,10,"denim");
+Insert into boutique values(3,"tops",15,1,30,"multi-color");
+Insert into boutique values(4,"bras",35,1,20,"pink");
+Insert into boutique values(5,"underwear_thong",10,1,25,"red");
+Insert into boutique values(6,"underwear_boyshort",10,1,20,"black");
+Insert into boutique values(7,"leggings",22,2,18,"gray");
+Insert into boutique values(8,"sunglasses",24,1,15,"brown");
+Insert into boutique values(9,"scarves",9,4,10,"purple");
+Insert into boutique values(10,"socks",6,4,20,"white");
+Insert into boutique values(11,"jewelry",5,4,30,"gold");
+Insert into boutique values(12,"boots",39,3,18,"tan");
+Insert into boutique values(13,"heels",29,3,22,"silver");
+Insert into boutique values(14,"tees",17,1,40,"multi_color");
+Insert into boutique values(15,"swimwear",22,2,26,"blue");
+Select * from boutique;
+
+--Display the database ordered by price
+Select * from boutique
+ORDER BY price asc;
+
+--What is the total number of items in the boutique?
+Select sum (inventory) from boutique;
