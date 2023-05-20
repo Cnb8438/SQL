@@ -1,0 +1,65 @@
+CREATE TABLE Nba_Players
+(ID INTEGER PRIMARY KEY,
+Player text,
+Team text,
+Position text,
+Height_m Integer,
+Weight Integer,
+Age Integer,
+Experience_years Integer);
+
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m,Weight,Age ,Experience_years) VALUES (1,'Stephen Curry','Warriors','Guard','1.88','185','35','13');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m,Weight,Age ,Experience_years)VALUES(2,'Kevin Durant','Suns','Forward','2.08','240','34','14');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(3,'Lebron James','Lakers','Forward','2.06','250','38','19');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(4,'Mo Bamba','Lakers','Center','2.13','231','24','4');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years) VALUES(5,'Lonzo Ball','Bulls','Guard','1.98','190','25','5');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years) VALUES(6,'Blake Griffin','Celtics','Forward','2.06','250','34','12');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years) VALUES(7,'Kawhi Leonard','Clippers','Forward','2.01','225','31','10');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years) VALUES(8,'Kyrie Irving','Mavericks','Guard','1.88','195','31','11');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years) VALUES(9,'Jayson Tatum','Celtics','Forward-Guard','2.03','210','25','5');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years) VALUES(10,'Ja Morant','Grizzlies','Guard','1.88','174','23','3');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(11,'Derrick Rose','Knicks','Guard','1.91','200','34','13');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(12,'Russell Westbrook','Clippers','Guard','1.91','200','34','14');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(13,'Klay Thompson','Warriors','Guard','1.98','220','33','9');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(14,'Paul George','Clippers','Forward','2.03','220','33','12');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(15,'Kevin Love','Heat','Foward-Center','2.03','251','34','14');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(16,'Nikola Jovic','Heat','forward','2.08','205','19','.5');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(17,'Anthony Davis','Lakers','Foward-Center','2.08','253','30','14');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(18,'Lamelo Ball','Hornets','Guard','2.01','180','21','2');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(19,'Jimmy Butler','Heat','Forward','2.01','230','33','11');
+INSERT INTO Nba_Players(ID,Player,Team ,Position,Height_m ,Weight,Age ,Experience_years)VALUES(20,'Chris Paul','suns','guard','1.83','175','38','17');
+SELECT * FROM Nba_Players;
+SELECT COUNT(*) FROM Nba_Players WHERE Experience_years > 10;
+
+--What are the avg,max,and min VALUES in the data ?
+
+SELECT AVG (Experience_years)AS "avg_ex_years",MAX(Experience_years)AS "Max_ex_years",MIN(Experience_years)AS "Min_ex_years" FROM nba_players;
+
+--What are avg experience years for players under 30?
+SELECT AVG(Experience_years)AS "avg_ex_years_under_3
+FROM nba_players GROUP BY age having age<30;
+
+--what ways are there to group the data values that dont exist yet(using CASE)?
+/*CASE*/
+SELECT Player,Height_m,Weight,
+CASE 
+    WHEN Weight > 210 THEN "above target"
+    WHEN weight < 185 THEN "below target"
+    ELSE "on target"
+    END as "target"
+FROM Nba_players;
+
+SELECT COUNT(*) Player,
+CASE 
+    WHEN Weight > 210 THEN "above target"
+    WHEN weight < 185 THEN "below target"
+    ELSE "on target"
+    END as "target"
+FROM Nba_players
+GROUP BY target;
+
+--What interesting ways are there to filter the data (using AND/OR)?
+
+SELECT Player,
+MAX(Experience_years)>= 15
+AND COUNT (*) FROM Nba_players
